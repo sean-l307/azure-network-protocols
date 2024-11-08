@@ -32,7 +32,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <h2>Actions and Observations</h2>
 
-![Capture9(enterIP and usernameRDP)](https://github.com/user-attachments/assets/a4ecc67f-8177-4bdd-a793-440324ceb5cf)
+![image](https://github.com/user-attachments/assets/0e81b33e-091b-46ff-b590-e67369094326)
 </p>
 <p>
 First, access the Azure portal by navigating to https://portal.azure.com/. Once inside the portal, locate your Windows virtual machine (VM) and copy its public IP address. To connect to this VM, open Remote Desktop Connection (RDC) by typing "RDC" into the Windows search bar and selecting the first result. A dialog box will appear where you should enter the public IP address of the VM. After clicking Connect, you will be prompted to enter the username and password that were created earlier. Enter these credentials and click OK to log in.
@@ -106,10 +106,14 @@ In wireshark, filter the traffic by "ssh" without saving. Within the SSH connect
 <br />
 
 
----------
+![image](https://github.com/user-attachments/assets/485a5311-6ecf-42a9-8e5a-c6b796a02127)
 </p>
 <p>
----------
+Next, we’ll examine DNS traffic on the VM.
+
+In Wireshark, set the filter to "DNS" and refresh. In the command line, type ipconfig /renew to renew the Windows VM’s IP address, which will generate DHCP traffic visible in Wireshark.
+
+To observe DNS traffic, enter nslookup google.com (or any website) in the command line, then switch the Wireshark filter to "DNS." To monitor continuous RDP traffic, use the filter "tcp.port == 3389" in Wireshark. Finally, delete the resource groups to avoid ongoing costs on Azure once you finish. This completes the tutorial.
 </p>
 <br />
 
